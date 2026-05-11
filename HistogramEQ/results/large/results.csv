@@ -1,0 +1,12 @@
+Implementation,AvgMs,CpuMs,Speedup,PeakHeapMB,GcCount,GcTimeMs
+Sequential,20,65,1.00,138,7,33
+Threaded (no pool) - 2 threads,15,62,1.33,147,7,25
+Threaded (no pool) - 4 threads,10,60,2.00,147,6,28
+Threaded (no pool) - 8 threads,10,61,2.00,146,5,26
+Thread Pool - 2 threads,16,64,1.25,147,6,26
+Thread Pool - 4 threads,10,60,2.00,141,6,26
+Thread Pool - 8 threads,10,61,2.00,150,5,26
+Fork/Join,14,86,1.43,149,6,38
+CompletableFuture - 2 threads,13,55,1.54,144,5,16
+CompletableFuture - 4 threads,8,51,2.50,142,4,16
+CompletableFuture - 8 threads,9,58,2.22,181,5,27

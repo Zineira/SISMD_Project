@@ -13,8 +13,8 @@ public class BenchmarkRunner {
     private static final int WARM_UP_RUNS   = 1;
     private static final int BENCHMARK_RUNS = 5;
 
-    public static List<BenchmarkResult> run(HistogramService[] services, Color[][] image)
-            throws Exception {
+    public static List<BenchmarkResult> run(HistogramService[] services, Color[][] image,
+                                            String outputDir) throws Exception {
 
         MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
 
@@ -83,9 +83,9 @@ public class BenchmarkRunner {
                     avgCpuMs, gcCount, gcTimeMs));
         }
 
-        exportCsv(results);
-        ChartGenerator.generatePerformanceChart(results, "charts/execution_times.png");
-        ChartGenerator.generateSpeedupChart(results, "charts/speedup.png");
+        exportCsv(results, outputDir + "/results.csv");
+        ChartGenerator.generatePerformanceChart(results, outputDir + "/charts/execution_times.png");
+        ChartGenerator.generateSpeedupChart(results, outputDir + "/charts/speedup.png");
 
         return results;
     }
@@ -108,8 +108,8 @@ public class BenchmarkRunner {
         return total;
     }
 
-    private static void exportCsv(List<BenchmarkResult> results) throws IOException {
-        try (PrintWriter pw = new PrintWriter(new FileWriter("results.csv"))) {
+    private static void exportCsv(List<BenchmarkResult> results, String path) throws IOException {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(path))) {
             pw.println("Implementation,AvgMs,CpuMs,Speedup,PeakHeapMB,GcCount,GcTimeMs");
             for (BenchmarkResult r : results) {
                 pw.printf("%s,%d,%d,%.2f,%d,%d,%d%n",
@@ -117,6 +117,6 @@ public class BenchmarkRunner {
                         r.peakMemoryMB, r.gcCount, r.gcTimeMs);
             }
         }
-        System.out.println("\nTabela exportada: results.csv");
+        System.out.println("\nTabela exportada: " + path);
     }
 }
