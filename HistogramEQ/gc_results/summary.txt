@@ -1,0 +1,6 @@
+GC Benchmark Summary
+Date: Mon May 11 15:36:15 WEST 2026
+
+G1GC | Sequential                                            20         33       1.00x             84        2        9
+ParallelGC | Sequential                                            24         43       1.00x            126        2       16
+ZGC | Sequential                                            17         29       1.00x            202        4        2

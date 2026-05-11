@@ -1,0 +1,24 @@
+Available cores: 8
+Image size: 860x1276 pixels
+
+Implementation                                   Avg(ms)    CPU(ms)    Speedup       PeakHeap   GC cnt    GC ms
+--------------------------------------------------------------------------------------------------------------
+Sequential                                            17         29       1.00x            202        4        2
+Threaded (no pool) - 2 threads                        10         31       1.70x            338        1        0
+Threaded (no pool) - 4 threads                         4         25       4.25x            342        4        0
+Threaded (no pool) - 8 threads                         4         30       4.25x            346        4        0
+Thread Pool - 2 threads                                9         39       1.89x            204       12       12
+Thread Pool - 4 threads                                4         25       4.25x            208       13       16
+Thread Pool - 8 threads                               13         29       1.31x            206       13       36
+Fork/Join                                              8         52       2.13x            206       13       10
+CompletableFuture - 2 threads                          9         38       1.89x            272        8       16
+CompletableFuture - 4 threads                          3         21       5.67x            276        9       11
+CompletableFuture - 8 threads                          3         26       5.67x            206        9       16
+
+Tabela exportada: results.csv
+Gráfico gerado: charts/execution_times.png
+Gráfico gerado: charts/speedup.png
+
+Output image saved to output.jpg
+Gráfico gerado: charts/histogram_original.png
+Gráfico gerado: charts/histogram_equalized.png
